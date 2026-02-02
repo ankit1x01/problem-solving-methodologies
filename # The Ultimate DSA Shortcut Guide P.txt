@@ -1,0 +1,1686 @@
+# The Ultimate DSA Shortcut Guide: Pattern Recognition & Problem-Solving Mastery
+
+> **🎯 Master the Art of Instantly Recognizing Problem Patterns & Applying the Right Algorithm**
+>
+> _"Give me six hours to chop down a tree and I will spend the first four sharpening the axe."_ — Abraham Lincoln
+
+---
+
+## Table of Contents
+
+1. [The Meta-Strategy: How Top Candidates Think](#the-meta-strategy-how-top-candidates-think)
+2. [The Universal Problem-Solving Framework](#the-universal-problem-solving-framework)
+3. [Pattern Recognition Decision Trees](#pattern-recognition-decision-trees)
+4. [Keyword-to-Pattern Mapping](#keyword-to-pattern-mapping)
+5. [Constraint-Based Algorithm Selection](#constraint-based-algorithm-selection)
+6. [The 20 Master Patterns That Solve 95% of Problems](#the-20-master-patterns-that-solve-95-of-problems)
+7. [One-Liner Pattern Identification Tricks](#one-liner-pattern-identification-tricks)
+8. [Template Code for Every Pattern](#template-code-for-every-pattern)
+9. [Speed Optimization Heuristics](#speed-optimization-heuristics)
+10. [Edge Cases Cheat Sheet](#edge-cases-cheat-sheet)
+11. [The 30-Day Mastery Plan](#the-30-day-mastery-plan)
+
+---
+
+## The Meta-Strategy: How Top Candidates Think
+
+### The Secret: Pattern Recognition, Not Memorization
+
+The difference between candidates who struggle and those who breeze through interviews isn't IQ—it's **pattern recognition ability**. There are only ~20 core patterns that cover 95%+ of interview problems.
+
+### The 3-Level Problem Solving Hierarchy
+
+```
+Level 3 (Expert):    "I've seen this pattern before" → Instant solution
+                            ↑
+Level 2 (Intermediate): Recognize constraints → Map to algorithm
+                            ↑
+Level 1 (Beginner):    Brute force → Optimize step by step
+```
+
+**Your Goal:** Get to Level 3 for the 20 core patterns.
+
+### The 80/20 Rule of DSA
+
+```
+20% of patterns → 80% of problems
+20% of practice → 80% of improvement
+
+Focus on:
+✅ Pattern mastery (not problem count)
+✅ Quality practice (understand, don't just solve)
+✅ Spaced repetition (revisit patterns weekly)
+```
+
+---
+
+## The Universal Problem-Solving Framework
+
+### The 5-Step UMPIRE Method
+
+```
+U - Understand the problem (2 min)
+M - Match to known patterns (1 min)
+P - Plan your approach (2 min)
+I - Implement the solution (15 min)
+R - Review and optimize (5 min)
+E - Evaluate edge cases (2 min)
+```
+
+### Step 1: UNDERSTAND (Critical First 2 Minutes)
+
+**Ask These Questions:**
+
+```
+□ What is the input? (Type, size, constraints)
+□ What is the expected output?
+□ Can I modify the input in-place?
+□ Is the input sorted? Can I sort it?
+□ Are there duplicates? How to handle them?
+□ What about negative numbers? Zeros?
+□ What's the range of values?
+□ What's the size constraint (n)?
+```
+
+**Example Mental Checklist:**
+
+```javascript
+// "Find two numbers that sum to target"
+// □ Input: Array of integers, target integer
+// □ Output: Indices of two numbers (or the numbers themselves?)
+// □ Can I use same element twice? → Usually NO
+// □ Is array sorted? → If yes: Two Pointers, If no: Hash Map
+// □ Duplicates? → May affect solution
+// □ Multiple solutions? → Return any one or all?
+```
+
+### Step 2: MATCH to Pattern (The Magic Step)
+
+**Use this decision flowchart:**
+
+```
+                    START
+                      │
+                      ▼
+        ┌─────────────────────────────┐
+        │  What is the problem about? │
+        └─────────────────────────────┘
+                      │
+    ┌─────────────────┼─────────────────┐
+    ▼                 ▼                 ▼
+ SEARCH           OPTIMIZE          ENUMERATE
+    │                 │                 │
+    ▼                 ▼                 ▼
+ Binary            DP/Greedy       Backtracking
+ Search                            DFS/BFS
+```
+
+---
+
+## Pattern Recognition Decision Trees
+
+### 🌳 MASTER DECISION TREE
+
+```
+START: Read the Problem
+         │
+         ▼
+┌────────────────────────────────────────────────────────────────┐
+│                    WHAT ARE YOU LOOKING FOR?                    │
+└────────────────────────────────────────────────────────────────┘
+         │
+         ├──► "Find/Search something" ──────────────────► SEARCH TREE
+         │
+         ├──► "Count/Enumerate all possibilities" ─────► ENUMERATION TREE
+         │
+         ├──► "Optimize (min/max)" ─────────────────────► OPTIMIZATION TREE
+         │
+         ├──► "Transform/Modify data" ──────────────────► TRANSFORMATION TREE
+         │
+         └──► "Design a data structure" ────────────────► DESIGN TREE
+```
+
+---
+
+### 🔍 SEARCH TREE
+
+```
+Looking for something?
+         │
+         ▼
+    Is input SORTED?
+    ┌────┴────┐
+   YES        NO
+    │          │
+    ▼          ▼
+ Binary     Can you SORT it?
+ Search     ┌────┴────┐
+            YES       NO
+             │         │
+             ▼         ▼
+          O(n log n)  Linear Search
+          acceptable? or Hash Map
+          ┌────┴────┐
+         YES        NO
+          │          │
+          ▼          ▼
+       Sort +      Hash Map
+       Binary      O(1) lookup
+       Search
+```
+
+**Quick Rules:**
+
+- Sorted + Search = **Binary Search**
+- Unsorted + Search = **Hash Map** (O(1) lookup)
+- Search in range = **Binary Search on Answer**
+
+---
+
+### 📊 OPTIMIZATION TREE (Min/Max Problems)
+
+```
+Finding MIN or MAX?
+         │
+         ▼
+    Can you make GREEDY choice?
+    (Local optimum = Global optimum?)
+    ┌────┴────┐
+   YES        NO
+    │          │
+    ▼          ▼
+  Greedy    Are there OVERLAPPING SUBPROBLEMS?
+             ┌────┴────┐
+            YES        NO
+             │          │
+             ▼          ▼
+           DP       Divide & Conquer
+             │
+             ▼
+         Can you define STATE?
+         (What changes between subproblems?)
+             │
+             ▼
+         STATE VARIABLES:
+         - Index (position in array)
+         - Remaining capacity
+         - Previous choice
+         - Count/Sum so far
+```
+
+**Quick Rules:**
+
+- Intervals + Optimize = **Greedy** (sort first!)
+- "Number of ways" = **DP**
+- "Minimum steps/cost" = **DP** or **BFS**
+- "Maximum value with constraint" = **Knapsack DP**
+
+---
+
+### 🌲 ENUMERATION TREE (All Possibilities)
+
+```
+Generate ALL possibilities?
+         │
+         ▼
+    Explore paths with BACKTRACK?
+    ┌────┴────┐
+   YES        NO
+    │          │
+    ▼          ▼
+Backtracking  Is it a TREE/GRAPH?
+    │         ┌────┴────┐
+    │        YES        NO
+    │         │          │
+    │         ▼          ▼
+    │      DFS/BFS    Bit Manipulation
+    │         │       (for small n)
+    ▼         ▼
+  Type:    SHORTEST path?
+  - Subsets     ┌────┴────┐
+  - Permutations YES      NO
+  - Combinations  │        │
+  - Partitions   ▼        ▼
+              BFS       DFS
+```
+
+**Quick Rules:**
+
+- "All subsets" = **Backtracking** or **Bit Manipulation**
+- "All permutations" = **Backtracking**
+- "Shortest path" = **BFS**
+- "Path exists?" = **DFS**
+
+---
+
+### 🔄 ARRAY/STRING TREE
+
+```
+Array or String problem?
+         │
+         ▼
+    Looking at SUBARRAYS/SUBSTRINGS?
+    ┌────┴────┐
+   YES        NO
+    │          │
+    ▼          ▼
+ Contiguous?  Looking at PAIRS?
+ ┌────┴────┐  ┌────┴────┐
+YES       NO  YES       NO
+ │         │   │         │
+ ▼         ▼   ▼         ▼
+Sliding   DP  Two     Check for
+Window        Pointers SORTING/HASH
+ │         │   │
+ ▼         ▼   ▼
+Fixed?    LCS/ Is array SORTED?
+Variable? LIS  ┌────┴────┐
+Window        YES       NO
+               │         │
+               ▼         ▼
+           Two        Sort first
+           Pointers   OR Hash Map
+```
+
+**Quick Rules:**
+
+- "Contiguous subarray" = **Sliding Window** or **Prefix Sum**
+- "Longest/Shortest with condition" = **Sliding Window**
+- "Sum equals K" = **Prefix Sum + Hash Map**
+- "Pairs with property" = **Two Pointers** (if sorted) or **Hash Map**
+
+---
+
+## Keyword-to-Pattern Mapping
+
+### 🚀 INSTANT PATTERN RECOGNITION CHEAT SHEET
+
+| When You See This...                 | Think This Pattern                       | Confidence |
+| ------------------------------------ | ---------------------------------------- | ---------- |
+| "Top K" / "K largest" / "K smallest" | **Heap**                                 | 95%        |
+| "Longest/Shortest substring with..." | **Sliding Window**                       | 90%        |
+| "Subarray sum equals K"              | **Prefix Sum + Hash Map**                | 95%        |
+| "Maximum subarray"                   | **Kadane's Algorithm**                   | 99%        |
+| "Two numbers that sum to..."         | **Hash Map** or **Two Pointers**         | 95%        |
+| "Sorted array" + search              | **Binary Search**                        | 99%        |
+| "Minimum/Maximum" + choices          | **DP** or **Greedy**                     | 85%        |
+| "Number of ways"                     | **DP**                                   | 95%        |
+| "Path in grid"                       | **DP** or **DFS**                        | 90%        |
+| "All permutations/combinations"      | **Backtracking**                         | 99%        |
+| "All subsets"                        | **Backtracking** or **Bit Manipulation** | 99%        |
+| "Connected components"               | **Union-Find** or **DFS**                | 95%        |
+| "Cycle in graph"                     | **DFS** or **Union-Find**                | 95%        |
+| "Shortest path" (unweighted)         | **BFS**                                  | 99%        |
+| "Shortest path" (weighted)           | **Dijkstra**                             | 95%        |
+| "Tree traversal"                     | **DFS** (recursive)                      | 90%        |
+| "Level-by-level"                     | **BFS**                                  | 99%        |
+| "Parentheses/Brackets"               | **Stack**                                | 95%        |
+| "Next greater/smaller element"       | **Monotonic Stack**                      | 99%        |
+| "Meeting rooms/Intervals overlap"    | **Sorting + Sweep**                      | 95%        |
+| "Merge intervals"                    | **Sort by start + Greedy**               | 99%        |
+| "Palindrome"                         | **Two Pointers** (outside-in)            | 90%        |
+| "Anagram"                            | **Hash Map (character count)**           | 99%        |
+| "LRU Cache"                          | **Hash Map + Doubly Linked List**        | 99%        |
+| "Trie/Prefix problems"               | **Trie**                                 | 95%        |
+| "Island/Grid connectivity"           | **DFS/BFS**                              | 99%        |
+| "Course schedule/Dependencies"       | **Topological Sort**                     | 99%        |
+
+---
+
+### 📝 PROBLEM STATEMENT KEYWORDS
+
+| Keyword                  | Pattern                     | Example Problem                   |
+| ------------------------ | --------------------------- | --------------------------------- |
+| **"Contiguous"**         | Sliding Window / Prefix Sum | Maximum Subarray                  |
+| **"In-place"**           | Two Pointers                | Remove Duplicates                 |
+| **"Lexicographically"**  | Sorting / Greedy            | Next Permutation                  |
+| **"At most K"**          | Sliding Window              | Subarrays with at most K distinct |
+| **"Exactly K"**          | At most K - At most (K-1)   | Subarrays with exactly K distinct |
+| **"Rotated sorted"**     | Modified Binary Search      | Search in Rotated Array           |
+| **"Minimum window"**     | Sliding Window (variable)   | Minimum Window Substring          |
+| **"Maximum product"**    | DP (track min & max)        | Maximum Product Subarray          |
+| **"Edit distance"**      | 2D DP                       | Levenshtein Distance              |
+| **"Word break"**         | DP / Trie                   | Word Break                        |
+| **"Stocks"**             | State Machine DP            | Best Time to Buy/Sell Stock       |
+| **"House robber"**       | Linear DP                   | House Robber                      |
+| **"Climbing stairs"**    | Fibonacci-style DP          | Climbing Stairs                   |
+| **"Coin change"**        | Unbounded Knapsack          | Coin Change                       |
+| **"Partition"**          | 0/1 Knapsack                | Partition Equal Subset Sum        |
+| **"Longest increasing"** | LIS DP / Binary Search      | Longest Increasing Subsequence    |
+| **"Common subsequence"** | 2D DP                       | Longest Common Subsequence        |
+
+---
+
+## Constraint-Based Algorithm Selection
+
+### 🎯 THE CONSTRAINT SHORTCUT
+
+**This is the #1 hack for interviews.** Look at `n` (input size) and match to complexity:
+
+| n (Input Size) | Target Complexity | Algorithms to Consider                        |
+| -------------- | ----------------- | --------------------------------------------- |
+| n ≤ 10         | O(n!), O(2ⁿ)      | Brute force, Backtracking                     |
+| n ≤ 20         | O(2ⁿ), O(n²·2ⁿ)   | Bit manipulation, Backtracking with pruning   |
+| n ≤ 100        | O(n³)             | Floyd-Warshall, 3D DP                         |
+| n ≤ 1,000      | O(n²)             | Nested loops, 2D DP                           |
+| n ≤ 10,000     | O(n²)             | Nested loops (might TLE), consider O(n log n) |
+| n ≤ 100,000    | O(n log n)        | Sorting, Binary Search, Heap                  |
+| n ≤ 1,000,000  | O(n)              | Hash Map, Two Pointers, Linear DP             |
+| n ≤ 10,000,000 | O(n)              | Linear scan, careful optimization             |
+| n > 10⁸        | O(log n), O(1)    | Math, Binary Search on answer                 |
+
+### 🔥 CONSTRAINT-BASED DECISION MAKING
+
+```
+Given n = 10^5 (100,000)
+    │
+    ▼
+Target: O(n log n) or O(n)
+    │
+    ▼
+ELIMINATE:
+  ✗ O(n²) - Too slow (10^10 operations)
+  ✗ O(n³) - Way too slow
+  ✗ O(2ⁿ) - Impossible
+    │
+    ▼
+CONSIDER:
+  ✓ Binary Search: O(log n)
+  ✓ Two Pointers: O(n)
+  ✓ Hash Map: O(n)
+  ✓ Sorting + Scan: O(n log n)
+  ✓ Heap: O(n log n)
+  ✓ Linear DP: O(n)
+```
+
+### 📊 QUICK COMPLEXITY REFERENCE
+
+```
+10^5 operations ≈ instant
+10^6 operations ≈ 0.01 seconds
+10^7 operations ≈ 0.1 seconds
+10^8 operations ≈ 1 second (LIMIT)
+10^9 operations ≈ 10 seconds (TLE!)
+```
+
+---
+
+## The 20 Master Patterns That Solve 95% of Problems
+
+### Pattern 1: Two Pointers (Opposite Direction)
+
+**When to Use:**
+
+- Sorted array + find pairs
+- Palindrome check
+- Container with most water
+
+**Template:**
+
+```javascript
+function twoPointers(arr) {
+    let left = 0, right = arr.length - 1;
+
+    while (left < right) {
+        // Process current pair
+        const sum = arr[left] + arr[right];
+
+        if (/* condition met */) {
+            return [left, right];
+        } else if (/* need bigger */) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    return -1;
+}
+```
+
+**Sample Problems:**
+
+- Two Sum II (sorted)
+- 3Sum
+- Container With Most Water
+- Trapping Rain Water
+
+---
+
+### Pattern 2: Two Pointers (Same Direction / Fast-Slow)
+
+**When to Use:**
+
+- Remove duplicates in-place
+- Linked list cycle detection
+- Find middle of linked list
+
+**Template:**
+
+```javascript
+// Remove duplicates
+function removeDuplicates(arr) {
+  let slow = 0;
+
+  for (let fast = 1; fast < arr.length; fast++) {
+    if (arr[fast] !== arr[slow]) {
+      slow++;
+      arr[slow] = arr[fast];
+    }
+  }
+  return slow + 1;
+}
+
+// Cycle detection
+function hasCycle(head) {
+  let slow = head,
+    fast = head;
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) return true;
+  }
+  return false;
+}
+```
+
+---
+
+### Pattern 3: Sliding Window (Fixed Size)
+
+**When to Use:**
+
+- Maximum/minimum of subarray of size K
+- Average of subarray of size K
+
+**Template:**
+
+```javascript
+function slidingWindowFixed(arr, k) {
+  let windowSum = 0,
+    maxSum = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    windowSum += arr[i]; // Add right element
+
+    if (i >= k - 1) {
+      maxSum = Math.max(maxSum, windowSum);
+      windowSum -= arr[i - k + 1]; // Remove left element
+    }
+  }
+  return maxSum;
+}
+```
+
+---
+
+### Pattern 4: Sliding Window (Variable Size)
+
+**When to Use:**
+
+- Longest/shortest subarray with condition
+- Minimum window substring
+
+**Template:**
+
+```javascript
+function slidingWindowVariable(arr, condition) {
+    let left = 0, result = 0;
+    let windowState = /* hash map, count, etc. */;
+
+    for (let right = 0; right < arr.length; right++) {
+        // Expand window: add arr[right] to state
+
+        while (/* window invalid */) {
+            // Shrink window: remove arr[left] from state
+            left++;
+        }
+
+        // Update result
+        result = Math.max(result, right - left + 1);
+    }
+    return result;
+}
+```
+
+**The Key Insight:**
+
+- Expand right when window valid
+- Shrink left when window invalid
+- Update result at each valid state
+
+---
+
+### Pattern 5: Binary Search (Standard)
+
+**When to Use:**
+
+- Search in sorted array
+- Find boundary (first/last occurrence)
+
+**Template:**
+
+```javascript
+// Standard search
+function binarySearch(arr, target) {
+  let left = 0,
+    right = arr.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) return mid;
+    if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+  return -1;
+}
+
+// Find leftmost (first occurrence)
+function leftBound(arr, target) {
+  let left = 0,
+    right = arr.length;
+
+  while (left < right) {
+    const mid = Math.floor((left + right) / 2);
+    if (arr[mid] < target) left = mid + 1;
+    else right = mid;
+  }
+  return left;
+}
+
+// Find rightmost (last occurrence)
+function rightBound(arr, target) {
+  let left = 0,
+    right = arr.length;
+
+  while (left < right) {
+    const mid = Math.floor((left + right) / 2);
+    if (arr[mid] <= target) left = mid + 1;
+    else right = mid;
+  }
+  return left - 1;
+}
+```
+
+---
+
+### Pattern 6: Binary Search on Answer
+
+**When to Use:**
+
+- "Minimum/maximum value that satisfies condition"
+- Optimization problems with monotonic property
+
+**Template:**
+
+```javascript
+function binarySearchOnAnswer(lo, hi, condition) {
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi) / 2);
+
+    if (condition(mid)) {
+      hi = mid; // For minimum satisfying
+      // lo = mid + 1; // For maximum satisfying
+    } else {
+      lo = mid + 1; // For minimum satisfying
+      // hi = mid;     // For maximum satisfying
+    }
+  }
+  return lo;
+}
+
+// Example: Koko Eating Bananas
+function minEatingSpeed(piles, h) {
+  let lo = 1,
+    hi = Math.max(...piles);
+
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi) / 2);
+    const hours = piles.reduce((sum, pile) => sum + Math.ceil(pile / mid), 0);
+
+    if (hours <= h) hi = mid;
+    else lo = mid + 1;
+  }
+  return lo;
+}
+```
+
+---
+
+### Pattern 7: Prefix Sum
+
+**When to Use:**
+
+- Range sum queries
+- Subarray sum equals K
+
+**Template:**
+
+```javascript
+// Build prefix sum
+function buildPrefixSum(arr) {
+  const prefix = [0];
+  for (const num of arr) {
+    prefix.push(prefix[prefix.length - 1] + num);
+  }
+  return prefix;
+}
+
+// Range sum [i, j] inclusive
+function rangeSum(prefix, i, j) {
+  return prefix[j + 1] - prefix[i];
+}
+
+// Subarray Sum Equals K
+function subarraySum(nums, k) {
+  const prefixCount = new Map([[0, 1]]);
+  let sum = 0,
+    count = 0;
+
+  for (const num of nums) {
+    sum += num;
+    if (prefixCount.has(sum - k)) {
+      count += prefixCount.get(sum - k);
+    }
+    prefixCount.set(sum, (prefixCount.get(sum) || 0) + 1);
+  }
+  return count;
+}
+```
+
+---
+
+### Pattern 8: Hash Map (Frequency Count)
+
+**When to Use:**
+
+- Two Sum
+- Anagrams
+- Frequency problems
+
+**Template:**
+
+```javascript
+// Two Sum
+function twoSum(nums, target) {
+  const seen = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (seen.has(complement)) {
+      return [seen.get(complement), i];
+    }
+    seen.set(nums[i], i);
+  }
+  return [-1, -1];
+}
+
+// Character frequency
+function charFrequency(str) {
+  const freq = new Map();
+  for (const char of str) {
+    freq.set(char, (freq.get(char) || 0) + 1);
+  }
+  return freq;
+}
+```
+
+---
+
+### Pattern 9: Stack (Matching/Nesting)
+
+**When to Use:**
+
+- Parentheses matching
+- Expression evaluation
+- Nested structures
+
+**Template:**
+
+```javascript
+function validParentheses(s) {
+  const stack = [];
+  const pairs = { ")": "(", "]": "[", "}": "{" };
+
+  for (const char of s) {
+    if ("([{".includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== pairs[char]) return false;
+    }
+  }
+  return stack.length === 0;
+}
+```
+
+---
+
+### Pattern 10: Monotonic Stack
+
+**When to Use:**
+
+- Next Greater Element
+- Previous Smaller Element
+- Histogram problems
+
+**Template:**
+
+```javascript
+// Next Greater Element
+function nextGreater(nums) {
+  const result = new Array(nums.length).fill(-1);
+  const stack = []; // Stores indices
+
+  for (let i = 0; i < nums.length; i++) {
+    while (stack.length && nums[i] > nums[stack[stack.length - 1]]) {
+      result[stack.pop()] = nums[i];
+    }
+    stack.push(i);
+  }
+  return result;
+}
+
+// Largest Rectangle in Histogram
+function largestRectangle(heights) {
+  const stack = [-1];
+  let maxArea = 0;
+
+  for (let i = 0; i <= heights.length; i++) {
+    const h = i === heights.length ? 0 : heights[i];
+
+    while (stack.length > 1 && h < heights[stack[stack.length - 1]]) {
+      const height = heights[stack.pop()];
+      const width = i - stack[stack.length - 1] - 1;
+      maxArea = Math.max(maxArea, height * width);
+    }
+    stack.push(i);
+  }
+  return maxArea;
+}
+```
+
+---
+
+### Pattern 11: BFS (Level-Order / Shortest Path)
+
+**When to Use:**
+
+- Shortest path in unweighted graph
+- Level-order tree traversal
+- Multi-source BFS
+
+**Template:**
+
+```javascript
+function bfs(graph, start) {
+  const visited = new Set([start]);
+  const queue = [start];
+  let level = 0;
+
+  while (queue.length) {
+    const levelSize = queue.length;
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      // Process node
+
+      for (const neighbor of graph[node]) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
+          queue.push(neighbor);
+        }
+      }
+    }
+    level++;
+  }
+  return level;
+}
+```
+
+---
+
+### Pattern 12: DFS (Path Finding / Tree Traversal)
+
+**When to Use:**
+
+- Path exists?
+- All paths
+- Tree problems
+
+**Template:**
+
+```javascript
+// Iterative DFS
+function dfsIterative(graph, start) {
+  const visited = new Set();
+  const stack = [start];
+
+  while (stack.length) {
+    const node = stack.pop();
+    if (visited.has(node)) continue;
+    visited.add(node);
+
+    // Process node
+
+    for (const neighbor of graph[node]) {
+      if (!visited.has(neighbor)) {
+        stack.push(neighbor);
+      }
+    }
+  }
+}
+
+// Recursive DFS (Tree)
+function treeDfs(root) {
+  if (!root) return;
+
+  // Pre-order: process before children
+  treeDfs(root.left);
+  // In-order: process between children
+  treeDfs(root.right);
+  // Post-order: process after children
+}
+```
+
+---
+
+### Pattern 13: Backtracking
+
+**When to Use:**
+
+- Generate all possibilities
+- Subsets, permutations, combinations
+- Constraint satisfaction
+
+**Template:**
+
+```javascript
+function backtrack(result, current, choices, start) {
+    // Base case: found a valid solution
+    if (/* solution complete */) {
+        result.push([...current]);
+        return;
+    }
+
+    for (let i = start; i < choices.length; i++) {
+        // Skip duplicates (if needed)
+        if (i > start && choices[i] === choices[i - 1]) continue;
+
+        // Make choice
+        current.push(choices[i]);
+
+        // Recurse
+        backtrack(result, current, choices, i + 1);  // i+1 for combinations
+        // backtrack(result, current, choices, i);   // i for unlimited use
+        // backtrack(result, current, remaining, 0); // For permutations
+
+        // Undo choice
+        current.pop();
+    }
+}
+```
+
+**Subsets:**
+
+```javascript
+function subsets(nums) {
+  const result = [];
+
+  function backtrack(start, current) {
+    result.push([...current]);
+
+    for (let i = start; i < nums.length; i++) {
+      current.push(nums[i]);
+      backtrack(i + 1, current);
+      current.pop();
+    }
+  }
+
+  backtrack(0, []);
+  return result;
+}
+```
+
+**Permutations:**
+
+```javascript
+function permute(nums) {
+  const result = [];
+
+  function backtrack(current, remaining) {
+    if (remaining.length === 0) {
+      result.push([...current]);
+      return;
+    }
+
+    for (let i = 0; i < remaining.length; i++) {
+      current.push(remaining[i]);
+      backtrack(current, [...remaining.slice(0, i), ...remaining.slice(i + 1)]);
+      current.pop();
+    }
+  }
+
+  backtrack([], nums);
+  return result;
+}
+```
+
+---
+
+### Pattern 14: Dynamic Programming (1D)
+
+**When to Use:**
+
+- Optimization problems
+- Counting problems
+- Fibonacci-style recurrence
+
+**Template:**
+
+```javascript
+// Bottom-up
+function dp1D(n) {
+    const dp = new Array(n + 1).fill(0);
+    dp[0] = /* base case */;
+
+    for (let i = 1; i <= n; i++) {
+        dp[i] = /* transition from dp[i-1], dp[i-2], etc. */;
+    }
+    return dp[n];
+}
+
+// Space-optimized (when only using previous states)
+function dp1DOptimized(n) {
+    let prev2 = /* base for dp[0] */;
+    let prev1 = /* base for dp[1] */;
+
+    for (let i = 2; i <= n; i++) {
+        const curr = prev1 + prev2;  // Example transition
+        prev2 = prev1;
+        prev1 = curr;
+    }
+    return prev1;
+}
+```
+
+---
+
+### Pattern 15: Dynamic Programming (2D)
+
+**When to Use:**
+
+- Two sequences (LCS, Edit Distance)
+- Grid problems
+- Knapsack variants
+
+**Template:**
+
+```javascript
+// 2D DP
+function dp2D(text1, text2) {
+  const m = text1.length,
+    n = text2.length;
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (text1[i - 1] === text2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+  return dp[m][n];
+}
+```
+
+---
+
+### Pattern 16: Topological Sort
+
+**When to Use:**
+
+- Task scheduling with dependencies
+- Course prerequisites
+- Build order
+
+**Template (Kahn's Algorithm - BFS):**
+
+```javascript
+function topologicalSort(n, edges) {
+  const graph = Array.from({ length: n }, () => []);
+  const inDegree = new Array(n).fill(0);
+
+  for (const [from, to] of edges) {
+    graph[from].push(to);
+    inDegree[to]++;
+  }
+
+  const queue = [];
+  for (let i = 0; i < n; i++) {
+    if (inDegree[i] === 0) queue.push(i);
+  }
+
+  const result = [];
+  while (queue.length) {
+    const node = queue.shift();
+    result.push(node);
+
+    for (const neighbor of graph[node]) {
+      inDegree[neighbor]--;
+      if (inDegree[neighbor] === 0) queue.push(neighbor);
+    }
+  }
+
+  return result.length === n ? result : []; // Empty if cycle
+}
+```
+
+---
+
+### Pattern 17: Union-Find (Disjoint Set)
+
+**When to Use:**
+
+- Connected components
+- Cycle detection
+- Dynamic connectivity
+
+**Template:**
+
+```javascript
+class UnionFind {
+  constructor(n) {
+    this.parent = Array.from({ length: n }, (_, i) => i);
+    this.rank = new Array(n).fill(0);
+    this.count = n;
+  }
+
+  find(x) {
+    if (this.parent[x] !== x) {
+      this.parent[x] = this.find(this.parent[x]); // Path compression
+    }
+    return this.parent[x];
+  }
+
+  union(x, y) {
+    const px = this.find(x),
+      py = this.find(y);
+    if (px === py) return false;
+
+    // Union by rank
+    if (this.rank[px] < this.rank[py]) {
+      this.parent[px] = py;
+    } else if (this.rank[px] > this.rank[py]) {
+      this.parent[py] = px;
+    } else {
+      this.parent[py] = px;
+      this.rank[px]++;
+    }
+    this.count--;
+    return true;
+  }
+
+  connected(x, y) {
+    return this.find(x) === this.find(y);
+  }
+}
+```
+
+---
+
+### Pattern 18: Heap (Priority Queue)
+
+**When to Use:**
+
+- Top K elements
+- Merge K sorted lists
+- Median in stream
+
+**Template:**
+
+```javascript
+// Using a min heap (for Top K largest, we need K smallest discarded)
+function topKFrequent(nums, k) {
+  const freq = new Map();
+  for (const num of nums) {
+    freq.set(num, (freq.get(num) || 0) + 1);
+  }
+
+  // In interviews, you can use: "I would use a min-heap here"
+  // Sort by frequency (simulates heap for demonstration)
+  const sorted = [...freq.entries()].sort((a, b) => b[1] - a[1]);
+  return sorted.slice(0, k).map((x) => x[0]);
+}
+
+// Two heaps for median
+class MedianFinder {
+  constructor() {
+    this.maxHeap = []; // Lower half
+    this.minHeap = []; // Upper half
+  }
+
+  addNum(num) {
+    // Add to max heap first
+    this.maxHeap.push(num);
+    this.maxHeap.sort((a, b) => b - a);
+
+    // Move max of maxHeap to minHeap
+    this.minHeap.push(this.maxHeap.shift());
+    this.minHeap.sort((a, b) => a - b);
+
+    // Balance: maxHeap can have at most 1 extra
+    if (this.minHeap.length > this.maxHeap.length) {
+      this.maxHeap.push(this.minHeap.shift());
+      this.maxHeap.sort((a, b) => b - a);
+    }
+  }
+
+  findMedian() {
+    if (this.maxHeap.length > this.minHeap.length) {
+      return this.maxHeap[0];
+    }
+    return (this.maxHeap[0] + this.minHeap[0]) / 2;
+  }
+}
+```
+
+---
+
+### Pattern 19: Trie (Prefix Tree)
+
+**When to Use:**
+
+- Autocomplete
+- Word search
+- Prefix matching
+
+**Template:**
+
+```javascript
+class TrieNode {
+  constructor() {
+    this.children = {};
+    this.isEnd = false;
+  }
+}
+
+class Trie {
+  constructor() {
+    this.root = new TrieNode();
+  }
+
+  insert(word) {
+    let node = this.root;
+    for (const char of word) {
+      if (!node.children[char]) {
+        node.children[char] = new TrieNode();
+      }
+      node = node.children[char];
+    }
+    node.isEnd = true;
+  }
+
+  search(word) {
+    let node = this.root;
+    for (const char of word) {
+      if (!node.children[char]) return false;
+      node = node.children[char];
+    }
+    return node.isEnd;
+  }
+
+  startsWith(prefix) {
+    let node = this.root;
+    for (const char of prefix) {
+      if (!node.children[char]) return false;
+      node = node.children[char];
+    }
+    return true;
+  }
+}
+```
+
+---
+
+### Pattern 20: Greedy (Interval Problems)
+
+**When to Use:**
+
+- Interval scheduling
+- Task assignment
+- Activity selection
+
+**Template:**
+
+```javascript
+// Merge Intervals
+function merge(intervals) {
+  intervals.sort((a, b) => a[0] - b[0]);
+  const result = [intervals[0]];
+
+  for (let i = 1; i < intervals.length; i++) {
+    const last = result[result.length - 1];
+    const curr = intervals[i];
+
+    if (curr[0] <= last[1]) {
+      last[1] = Math.max(last[1], curr[1]);
+    } else {
+      result.push(curr);
+    }
+  }
+  return result;
+}
+
+// Meeting Rooms (check overlap)
+function canAttend(intervals) {
+  intervals.sort((a, b) => a[0] - b[0]);
+
+  for (let i = 1; i < intervals.length; i++) {
+    if (intervals[i][0] < intervals[i - 1][1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Meeting Rooms II (min rooms needed)
+function minMeetingRooms(intervals) {
+  const starts = intervals.map((i) => i[0]).sort((a, b) => a - b);
+  const ends = intervals.map((i) => i[1]).sort((a, b) => a - b);
+
+  let rooms = 0,
+    endPtr = 0;
+  for (const start of starts) {
+    if (start < ends[endPtr]) {
+      rooms++;
+    } else {
+      endPtr++;
+    }
+  }
+  return rooms;
+}
+```
+
+---
+
+## One-Liner Pattern Identification Tricks
+
+### 🧠 INSTANT RECOGNITION SHORTCUTS
+
+```
+📌 See "K" in the problem?
+   → K largest = Heap (min-heap of size K)
+   → K closest = Heap
+   → K sum = Sliding Window or Two Pointers
+
+📌 See "contiguous subarray"?
+   → Sum problem = Prefix Sum + Hash Map
+   → Window problem = Sliding Window
+
+📌 See "sorted array"?
+   → Always think Binary Search first
+   → Two Sum variant = Two Pointers
+
+📌 See "substring" or "subarray"?
+   → Usually Sliding Window
+   → If "all subarrays" = Prefix Sum
+
+📌 See "shortest path"?
+   → Unweighted = BFS
+   → Weighted = Dijkstra
+   → Negative weights = Bellman-Ford
+
+📌 See "all paths" or "count paths"?
+   → DFS or DP
+
+📌 See "minimum/maximum steps"?
+   → BFS (discrete) or DP (overlapping)
+
+📌 See "in-place"?
+   → Two Pointers (fast/slow)
+   → Swap-based algorithms
+
+📌 See "lexicographically"?
+   → Usually greedy with sorting
+   → Maybe stack-based
+
+📌 See tree and "level"?
+   → BFS
+
+📌 See tree and "path/depth"?
+   → DFS
+
+📌 See "dependencies" or "ordering"?
+   → Topological Sort
+
+📌 See "connected" or "groups"?
+   → Union-Find or DFS
+
+📌 See "palindrome"?
+   → Two Pointers (outside-in)
+   → Or DP for longest palindromic
+
+📌 See "parentheses" or "matching"?
+   → Stack
+
+📌 See "next greater/smaller"?
+   → Monotonic Stack
+```
+
+---
+
+## Speed Optimization Heuristics
+
+### ⚡ GOING FROM BRUTE FORCE TO OPTIMAL
+
+```
+BRUTE FORCE: O(n²) or worse
+     │
+     ▼
+Ask: "What am I recalculating?"
+     │
+     ├── Recalculating sums? → Prefix Sum
+     │
+     ├── Recalculating lookups? → Hash Map
+     │
+     ├── Recalculating subproblems? → DP with memoization
+     │
+     ├── Searching linearly? → Binary Search (if sorted)
+     │
+     └── Processing each element multiple times? → Two Pointers
+```
+
+### 🔧 OPTIMIZATION PATTERNS
+
+| From                       | To          | Technique                |
+| -------------------------- | ----------- | ------------------------ |
+| O(n²) nested loop for sums | O(n)        | Hash Map                 |
+| O(n²) for pairs            | O(n)        | Two Pointers (if sorted) |
+| O(n) search in sorted      | O(log n)    | Binary Search            |
+| O(2ⁿ) subsets with DP      | O(n·target) | Knapsack DP              |
+| O(n²) LIS                  | O(n log n)  | Binary Search + DP       |
+| O(n²) for sliding window   | O(n)        | Proper window technique  |
+| O(V²) Dijkstra             | O(E log V)  | Priority Queue           |
+
+### 💡 SPACE-TIME TRADEOFFS
+
+```
+Common Tradeoffs:
+┌────────────────────────────────────────────────────────┐
+│  More Space → Less Time (usually better for interviews)│
+│                                                        │
+│  Examples:                                             │
+│  • Hash Map for O(1) lookup (uses O(n) space)          │
+│  • DP table to avoid recalculation                     │
+│  • Prefix sum array for O(1) range queries             │
+│  • Trie for fast prefix lookups                        │
+│  • Memoization cache for recursive calls               │
+└────────────────────────────────────────────────────────┘
+
+When to Optimize Space:
+• Very large inputs where memory is constrained
+• Interview follow-up: "Can you do it with O(1) space?"
+• In-place modifications mentioned
+
+Techniques for Space Optimization:
+• Two variables instead of array (Fibonacci-style DP)
+• Bit manipulation instead of boolean array
+• Modify input array if allowed
+• Rolling array for 2D DP (keep only current + previous row)
+```
+
+---
+
+## Edge Cases Cheat Sheet
+
+### 🎯 UNIVERSAL EDGE CASES TO CHECK
+
+```
+□ Empty input ([], "", null)
+□ Single element
+□ Two elements
+□ All same elements
+□ Sorted input (ascending)
+□ Reverse sorted (descending)
+□ Contains duplicates
+□ Contains negative numbers
+□ Contains zero
+□ Very large numbers (overflow?)
+□ Very small numbers (underflow?)
+□ Maximum input size (performance)
+```
+
+### 📋 DATA STRUCTURE SPECIFIC EDGE CASES
+
+**Arrays:**
+
+```
+□ Empty array
+□ Single element
+□ All elements same
+□ Already sorted
+□ Reverse sorted
+□ Contains MAX_INT / MIN_INT
+```
+
+**Strings:**
+
+```
+□ Empty string
+□ Single character
+□ All same characters
+□ Only spaces
+□ Special characters
+□ Unicode characters
+```
+
+**Linked Lists:**
+
+```
+□ Empty list (null head)
+□ Single node
+□ Two nodes
+□ Cycle present
+□ Cycle at head
+□ Very long list
+```
+
+**Trees:**
+
+```
+□ Empty tree (null root)
+□ Single node
+□ Only left children (skewed)
+□ Only right children (skewed)
+□ Perfect balanced tree
+□ Very deep tree (stack overflow?)
+```
+
+**Graphs:**
+
+```
+□ Empty graph (no nodes)
+□ Single node
+□ Disconnected components
+□ Cycle present
+□ Self-loop
+□ Dense graph (V² edges)
+□ Sparse graph (V edges)
+```
+
+### ⚠️ COMMON BUGS TO AVOID
+
+```javascript
+// 1. Off-by-one errors
+for (let i = 0; i <= arr.length; i++)  // WRONG: should be <
+for (let i = 0; i < arr.length; i++)   // CORRECT
+
+// 2. Integer overflow (in languages with fixed int)
+const mid = (left + right) / 2;                    // RISKY
+const mid = left + Math.floor((right - left) / 2); // SAFE
+
+// 3. Modifying collection while iterating
+for (const item of list) {
+    list.delete(item);  // DANGEROUS
+}
+
+// 4. Not handling null/undefined
+if (node.left.val === target)    // WRONG: node.left might be null
+if (node.left && node.left.val === target)  // CORRECT
+
+// 5. Reference vs value (arrays/objects)
+const copy = arr;           // WRONG: same reference
+const copy = [...arr];      // CORRECT: shallow copy
+const copy = JSON.parse(JSON.stringify(arr));  // Deep copy
+
+// 6. Wrong comparison for floating point
+if (a === b)                          // RISKY for floats
+if (Math.abs(a - b) < 0.0001)         // CORRECT
+```
+
+---
+
+## The 30-Day Mastery Plan
+
+### Week 1: Foundations (Days 1-7)
+
+| Day | Pattern                   | Problems                                         | Time |
+| --- | ------------------------- | ------------------------------------------------ | ---- |
+| 1   | Two Pointers              | Two Sum II, 3Sum, Container With Most Water      | 3h   |
+| 2   | Sliding Window (Fixed)    | Max Average Subarray, Max Sum Subarray K         | 3h   |
+| 3   | Sliding Window (Variable) | Longest Substring Without Repeat, Min Window     | 3h   |
+| 4   | Binary Search             | Search Insert, Search in Rotated, Find Peak      | 3h   |
+| 5   | Hash Map                  | Two Sum, Group Anagrams, Subarray Sum K          | 3h   |
+| 6   | Stack                     | Valid Parentheses, Daily Temperatures, Min Stack | 3h   |
+| 7   | Review + Practice         | Mix of Week 1 problems                           | 4h   |
+
+### Week 2: Trees & Graphs (Days 8-14)
+
+| Day | Pattern           | Problems                                          | Time |
+| --- | ----------------- | ------------------------------------------------- | ---- |
+| 8   | BFS (Trees)       | Level Order, Right Side View, Zigzag              | 3h   |
+| 9   | DFS (Trees)       | Max Depth, Path Sum, Validate BST                 | 3h   |
+| 10  | BFS (Graphs)      | Number of Islands, Rotting Oranges, Shortest Path | 3h   |
+| 11  | DFS (Graphs)      | Clone Graph, Pacific Atlantic, Course Schedule    | 3h   |
+| 12  | Topological Sort  | Course Schedule I & II, Alien Dictionary          | 3h   |
+| 13  | Union-Find        | Number of Provinces, Redundant Connection         | 3h   |
+| 14  | Review + Practice | Mix of Week 2 problems                            | 4h   |
+
+### Week 3: Dynamic Programming (Days 15-21)
+
+| Day | Pattern           | Problems                                   | Time |
+| --- | ----------------- | ------------------------------------------ | ---- |
+| 15  | DP Basics (1D)    | Climbing Stairs, House Robber, Decode Ways | 3h   |
+| 16  | DP (2D Grid)      | Unique Paths, Min Path Sum, Dungeon Game   | 3h   |
+| 17  | DP (Strings)      | Longest Common Subsequence, Edit Distance  | 3h   |
+| 18  | DP (Knapsack)     | Coin Change, Partition Equal Subset Sum    | 3h   |
+| 19  | DP (LIS/LCS)      | LIS, Longest Increasing Path in Matrix     | 3h   |
+| 20  | DP (Advanced)     | Word Break, Burst Balloons                 | 3h   |
+| 21  | Review + Practice | Mix of Week 3 problems                     | 4h   |
+
+### Week 4: Advanced & Integration (Days 22-30)
+
+| Day | Pattern          | Problems                                     | Time |
+| --- | ---------------- | -------------------------------------------- | ---- |
+| 22  | Backtracking     | Subsets, Permutations, Combinations          | 3h   |
+| 23  | Heap             | Top K Frequent, Merge K Lists, Median Stream | 3h   |
+| 24  | Trie             | Implement Trie, Word Search II               | 3h   |
+| 25  | Monotonic Stack  | Next Greater, Largest Rectangle              | 3h   |
+| 26  | Greedy           | Intervals, Jump Game, Gas Station            | 3h   |
+| 27  | Mixed Practice   | Company-specific problems                    | 4h   |
+| 28  | Mock Interview 1 | Simulate real interview                      | 2h   |
+| 29  | Mock Interview 2 | Simulate real interview                      | 2h   |
+| 30  | Final Review     | Weak areas + edge cases                      | 4h   |
+
+---
+
+## Interview Execution Checklist
+
+### Before Coding (3-5 min)
+
+```
+□ Clarify the problem (ask 2-3 questions)
+□ Work through 1-2 examples by hand
+□ Identify the pattern
+□ State your approach out loud
+□ Mention time/space complexity of your plan
+□ Get confirmation before coding
+```
+
+### While Coding (15-20 min)
+
+```
+□ Write clean, readable code
+□ Use meaningful variable names
+□ Talk through your logic as you code
+□ Don't worry about syntax errors initially
+□ Write helper functions if needed
+□ Handle base cases first
+```
+
+### After Coding (5 min)
+
+```
+□ Trace through with the example
+□ Test edge cases mentally
+□ Identify and fix bugs
+□ Discuss optimizations if asked
+□ Analyze final time/space complexity
+```
+
+### What Interviewers Actually Look For
+
+```
+✅ Clear communication (think out loud)
+✅ Structured approach (don't jump to code)
+✅ Correct solution (even if not optimal first)
+✅ Bug-free code (or quick self-correction)
+✅ Optimization awareness
+✅ Handle hints gracefully
+✅ Good attitude and collaboration
+```
+
+---
+
+## Final Tips for Success
+
+### 💎 The Golden Rules
+
+1. **Pattern > Memorization**: Learn 20 patterns, solve 1000+ problems
+2. **Constraint = Shortcut**: n tells you the algorithm
+3. **Brute Force First**: It's OK to start slow, then optimize
+4. **Talk Out Loud**: Interviewers want to see your thinking
+5. **Practice Under Pressure**: Timed practice > casual practice
+6. **Review Mistakes**: Wrong answers teach more than right ones
+
+### 🚀 Speed Boosters
+
+```
+- Know your templates cold (no thinking required)
+- Recognize patterns in first 30 seconds
+- Have default edge cases ready
+- Use descriptive variable names (faster debugging)
+- Practice typing speed (sounds silly, but helps!)
+```
+
+### 🎯 Company-Specific Final Tips
+
+**Google**: They love optimization. Always discuss going from O(n²) → O(n log n) → O(n).
+
+**Meta**: Speed matters. Practice solving 2 mediums in 35 minutes.
+
+**Amazon**: Connect everything to Leadership Principles. "I chose this approach because of Bias for Action..."
+
+**Apple**: Deep dive into design decisions. Why THIS data structure?
+
+**Netflix**: Be opinionated. They value strong technical opinions backed by reasoning.
+
+---
+
+_Last Updated: January 2026_
+_Version: 1.0_
+_"The master has failed more times than the beginner has tried."_
