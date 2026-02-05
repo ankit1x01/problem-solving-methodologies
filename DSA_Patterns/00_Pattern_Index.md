@@ -1,6 +1,6 @@
 # DSA Pattern Index
 
-Here is a list of the 20 Master Patterns from "The Ultimate DSA Shortcut Guide".
+Here is a list of the 21 Master Patterns from "The Ultimate DSA Shortcut Guide".
 
 1.  [Two Pointers (Opposite Direction)](./01_Two_Pointers_Opposite/README.md)
 2.  [Two Pointers (Same Direction / Fast-Slow)](./02_Two_Pointers_Same_Direction/README.md)
@@ -22,3 +22,4 @@ Here is a list of the 20 Master Patterns from "The Ultimate DSA Shortcut Guide".
 18. [Heap (Priority Queue)](./18_Heap_Priority_Queue/README.md)
 19. [Trie (Prefix Tree)](./19_Trie/README.md)
 20. [Greedy (Interval Problems)](./20_Greedy_Intervals/README.md)
+21. [Array Simulation](./21_Array_Simulation/README.md)
